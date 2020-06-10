@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    >
+    <androidx.cardview.widget.CardView
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5px"
+        android:background="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+
+        >
+
+        <TextView
+            android:id="@+id/order_movie_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:text="movie name"
+            android:textSize="18sp"
+            android:textStyle="bold"></TextView>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="2"
+            >
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/order_movie_img"
+                android:layout_width="90dp"
+                android:layout_height="match_parent"
+                fresco:actualImageScaleType="centerCrop"
+                fresco:placeholderImage="@drawable/icon_placeholder"
+                fresco:placeholderImageScaleType="fitCenter"
+                fresco:progressBarImage="@drawable/icon_loading"
+                fresco:progressBarImageScaleType="centerInside"
+                fresco:progressBarAutoRotateInterval="5000"
+                fresco:failureImage="@drawable/icon_failure"
+                fresco:failureImageScaleType="centerInside"
+                />
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                >
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    >
+                <TextView
+                    android:id="@+id/order_time"
+                    android:text="order time"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/order_movie_time"
+                        android:text="12;00 - 13;00"
+                        android:gravity="right"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    >
+                <TextView
+                    android:id="@+id/order_movie_hall"
+                    android:text="order hall"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/order_movie_seat"
+                        android:text="order seat num"
+                        android:gravity="right"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/order_movie_code"
+                    android:text="order codee"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_height="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_weight="2"
+                    >
+                    <Button
+                        android:id="@+id/order_movie_comment"
+                        android:text="comment"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="right"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

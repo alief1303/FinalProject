@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<script>
+function ensure() {
+    var price = document.getElementById('dataid1').getAttribute('d');
+    var money = document.getElementById('dataid2').getAttribute('d');
+    if(parseFloat(price)>parseFloat(money)){
+        alert("You account only have "+money+", which is not enough")
+        return false
+    }
+    if(confirm("Are you sure about the order")) {
+        alert("Order successful")
+        return true
+    }
+    else {
+        alert("You have denied your order")
+        return false
+    }
+}
+</script>
+
+<body>
+<div class="col-md-2"></div>
+<div class="col-md-8">
+    <div align="center">
+        <br><br>
+        <h1 >{{movie.movie_name}}</h1><br><br>
+        <h2>{{movie.date}},&nbsp{{movie.start_time}}&nbsp to &nbsp{{movie.finish_time}}</h2>
+    </div>
+    <div>
+        <table id="table-breakpoint">
+          <caption>Chose Seat</caption>
+          <thead>
+            <tr>
+                <th></th>
+                <th>Col 1</th>
+                <th>Col 2</th>
+                <th>Col 3</th>
+                <th>Col 4</th>
+                <th>Col 5</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for line in range(8) %}
+                <tr>
+                    <td>LINE&nbsp{{line}}</td>
+                    {% for column in range(5) %}
+                        <td>
+                            {% if seats[line*5+column] %}
+                                ❌
+                            {% else %}
+                                {{ 5*line + column + 1}}
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+    <div id="dataid1" d="{{price}}"></div>
+    <div id="dataid2" d="{{current_user.money}}"></div>
+    <div align="center"><br>
+        <p>The price is $ {{price}}
+            {% if current_user.user_vip_level>0 %}(origin price is {{movie.price}}){%endif%}</p>
+        <form action="/order_operation/{{movie.movie_id}}" onsubmit="return ensure()" method="post" name="create">
+            Seat number
+            <select name="number">
+                {% for i in range(40) %}
+                    {% if not seats[i] %}<option>{{i+1}}</option>{% endif %}
+                {% endfor %}
+            </select>&nbsp&nbsp&nbsp&nbsp
+            <input type="submit" id=""  name="" value="order" />
+        </form>
+    </div>
+</div>
+<div class="col-md-2"></div>
+</body>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+ {% block content %}
+<h1>Edit Information</h1>
+    <div class="login-form">
+    <!-- Input box-->
+    <div style="margin:0 auto;width:450px">
+    <form action="/edit_profile/{{person.user_id}}" enctype='multipart/form-data' method='POST'>
+      {{ form.hidden_tag() }}
+          <br><br>
+          Age:
+           {{ form.age }}
+           {% for error in form.age.errors %}
+                <span style="color: red;">{{ error }}</span>
+           {% endfor %}<br><br><br>
+          Gender:
+          <br><br>
+          <div style="position:relative;left:40%">
+          {{ form.gender }}<br><br>
+          </div>
+         Phone number:
+          {{ form.phone_number }}<br><br><br><br>
+         User avatar:
+          {{ form.avatar }}<br><br><br>
+         <input type="submit"  value="Submit"><br>
+     </form>
+    </div>
+    </div>
+<br><br>
+<br><br>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>LOGIN</h1>
+<br>
+
+<div class="login-form">
+
+    <form action="" method="post">
+        <div style="text-align:center;">
+
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.email.label }}<br>
+            <input type="email" name="email" placeholder="E-mail" style="width:360px;"><br>
+            {% for error in form.email.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <br>
+        <p>
+            {{ form.password.label }}<br>
+            <input type="password" name="password" placeholder="Password" style="width:360px;"><br>
+            {% for error in form.password.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <br><br>
+
+            <img src="/code " onclick="this.src='/code?'+ Math.random()"><br><br>
+
+        <p>
+            {{ form.verify_code.label }}<br>
+            (Five case-insensitive characters)<br>
+            <div style="margin:0 auto; width:360px">
+            {{ form.verify_code }}<br>
+            </div>
+            {% for error in form.verify_code.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <br><br>
+
+        <p>
+            <input type="submit" value="LOGIN NOW" style="width:360px;">
+        </p>
+        <br><br>
+
+        <p>
+            HAS NO ACCOUNT ? <a href="/register"> HIT HERE !</a>
+        </p>
+        </div>
+    </form>
+
+</div>
+<br><br><br>
+{% endblock %}

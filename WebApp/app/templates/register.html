@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>REGISTER</h1>
+<br>
+    <div class="login-form">
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <div style="text-align:center;">
+        <p>
+            {{ form.username.label }}<br>
+            <input type="text" name="username" placeholder="Username" style="width:360px;"><br>
+            {% for error in form.username.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.email.label }}<br>
+            <input type="email" name="email" placeholder="E-mail" style="width:360px;"><br>
+            {% for error in form.email.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.password.label }}<br>
+            <input type="password" name="password" placeholder="Password" style="width:360px;"><br>
+            {% for error in form.password.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.password_confirm.label }}<br>
+            <input type="password" name="password_confirm" placeholder="Password_confirm" style="width:360px;"><br>
+            {% for error in form.password_confirm.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </p><br><br>
+
+        <p>
+           <input type="submit" value="REGISTER NOW" style="width:360px;">
+        </p>
+<br><br>
+        <p>
+            HAS AN ACCOUNT ?<a href="/login"> HIT HERE !</a>
+        </p>
+        </div>
+    </form>
+    </div>
+<br><br><br>
+{% endblock %}

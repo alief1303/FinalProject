@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+ {% block content %}
+<h1>Write comment</h1>
+    <div class="login-form">
+    <!-- Input box-->
+    <div style="margin:0 auto;width:450px">
+    <form action="" method='POST'>
+      {{ form.hidden_tag() }}
+          <br><br>
+          Comment:
+           {{ form.body(cols='100',rows='20',class_='form-control') }}
+           {% for error in form.body.errors %}
+                <span style="color: red;">{{ error }}</span>
+           {% endfor %}<br><br><br>
+          Mark:
+           {{ form.mark(cols='100',rows='20',class_='form-control') }}
+           {% for error in form.mark.errors %}
+                <span style="color: red;">{{ error }}</span>
+           {% endfor %}<br><br><br>
+         <input type="submit"  value="Submit"><br>
+     </form>
+    </div>
+    </div>
+<br><br>
+<br><br>
+{% endblock %}

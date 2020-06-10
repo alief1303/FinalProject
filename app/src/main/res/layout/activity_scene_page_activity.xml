@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Scene_page_activity">
+
+    <TextView
+        android:id="@+id/cinema"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Cinema"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/cinema_address"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="XX ROAD XX STREET"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:orientation="vertical"
+        android:background="#3F3434">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:id="@+id/movie_post"
+            fresco:actualImageScaleType="centerCrop"
+            fresco:placeholderImage="@drawable/icon_placeholder"
+            fresco:placeholderImageScaleType="fitCenter"
+            fresco:progressBarImage="@drawable/icon_loading"
+            fresco:progressBarAutoRotateInterval="5000"
+            fresco:failureImage="@drawable/icon_failure"
+            fresco:failureImageScaleType="centerInside"
+            />
+    </LinearLayout>
+    <RadioGroup
+        android:id="@+id/rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:background="#fafafa">
+        <RadioButton
+            android:id="@+id/data1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="data 1"
+            />
+        <RadioButton
+            android:id="@+id/data2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="data 2"
+            />
+        <RadioButton
+            android:id="@+id/data3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="data 3"
+            />
+    </RadioGroup>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.viewpager.widget.ViewPager>
+
+
+
+
+</LinearLayout >

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+<title>Upload New Movie</title>
+
+<body>
+	<div class="w3_breadcrumb">
+		<div class="breadcrumb-inner">
+			<ul>
+				<li><a href="index.html">Home</a><i>//</i></li>
+				<li>New movie</li>
+			</ul>
+		</div>
+	</div>
+			<!--/content-inner-section-->
+	<div class="w3_content_agilleinfo_inner">
+		<div class="agile_featured_movies">
+			<div class="inner-agile-w3l-part-head">
+				<h3 class="w3l-inner-h-title">Add scene</h3>
+				<p class="w3ls_head_para">Please fill in the scene data for this movie</p>
+			</div>
+			<div class="login-form">
+				<form action=""  method='POST'>
+					{{ form.hidden_tag() }}
+					<div style="margin:0 auto;width:450px">
+						Scene:<br>
+						{{ form.scene(cols='80',class_='form-control') }}<br>
+						{% for error in form.scene.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}<br>
+                        Date:<br>
+						{{ form.date(cols='80',class_='form-control') }}<br>
+						{% for error in form.date.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}<br>
+						Start time:<br>
+						{{ form.start_time(cols='80',class_='form-control') }}<br>
+						{% for error in form.start_time.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}<br>
+						Finish time:<br>
+						{{ form.finish_time(cols='80',class_='form-control') }}<br>
+						{% for error in form.finish_time.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}<br>
+						Price:<br>
+						{{ form.price(cols='80',class_='form-control') }}<br>
+						{% for error in form.price.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}<br>
+						Projection hall:<br>
+						{{ form.projection_hall(cols='80',class_='form-control') }}<br>
+						{% for error in form.projection_hall.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}<br>
+						<input type="submit"  value="Submit">
+
+					</div>
+					{% with messages = get_flashed_messages() %}
+						{% if messages %}
+							<ul class="flash">
+								{% for message in messages %}
+									<div class="alert alert-success" style="text-align: center">
+										<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+										<strong>{{ message }}</strong></div>
+								{% endfor %}
+							</ul>
+						{% endif %}
+					{% endwith %}
+					<div class="clearfix"> </div>
+				</form>
+
+		</div>
+		</div>
+	</div>
+</body>
+{%endblock%}

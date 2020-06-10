@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+<title>List</title>
+
+</head>
+<body>
+	<!--/content-inner-section-->
+	<div class="w3_content_agilleinfo_inner">
+			<div class="agile_featured_movies">
+			<div class="inner-agile-w3l-part-head">
+					<h3 class="w3l-inner-h-title">Movie List</h3>
+				</div>
+					   <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+
+			<div id="myTabContent" class="tab-content">
+				<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+					<div class="agile-news-table">
+
+						<table id="table-breakpoint">
+							<thead>
+							  <tr>
+								<th>Name</th>
+                                <th>Scenes</th>
+								<th>Date</th>
+								<th>Start time</th>
+								<th>Finish time</th>
+								<th>Projection hall</th>
+                                <th>Price</th>
+								<th>Order</th>
+							    {% if current_user.is_authenticated %}
+								  {% if current_user.mail == "944190546@qq.com" %}
+								  	<th>Edit</th>
+								  {% endif %}
+							  	{% endif %}
+
+							  </tr>
+							</thead>
+							<tbody>
+                              {% for movie in movies%}
+							  <tr>
+                                 {%if movie.scene > 0 %}
+                                    <td>{{movie.movie_name}}</td>
+                                    <td>{{movie.scene}}</td>
+                                    <td>{{movie.date}}</td>
+                                    <td>{{movie.start_time}}</td>
+                                    <td>{{movie.finish_time}}</td>
+                                    <td>{{movie.projection_hall}}</td>
+                                    <td>{{movie.price}}</td>
+								  	<td><a href="/order/{{movie.movie_id}}">order</a></td>
+                                    {% if current_user.is_authenticated %}
+										{% if current_user.mail == "944190546@qq.com" %}
+											<td><a href="/edit_movieData/{{movie.movie_id}}"><button type="button" class="btn btn-upload" style="color: gray">Edit</button></a></td>
+										{% endif%}
+									{% endif %}
+                                 {%endif%}
+							  </tr>
+							  {% endfor %}
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+			<!--//content-inner-section-->
+
+				<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+
+
+<br><br><br>
+</body>
+{%endblock%}

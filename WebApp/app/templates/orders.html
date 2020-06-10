@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+<title>List</title>
+
+</head>
+<body>
+	<!--/content-inner-section-->
+	<div class="w3_content_agilleinfo_inner">
+			<div class="agile_featured_movies">
+			<div class="inner-agile-w3l-part-head">
+					<h3 class="w3l-inner-h-title">Past Orders</h3>
+				</div>
+					   <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+
+			<div id="myTabContent" class="tab-content">
+				<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+					<div class="agile-news-table">
+
+						<table id="table-breakpoint">
+							<thead>
+							  <tr>
+								<th>Poster</th>
+								<th>Movie Name</th>
+								<th>Date</th>
+								<th>Start time</th>
+								<th>End time</th>
+								<th>Seat</th>
+								<th>Price</th>
+								<th>ticket key</th>
+								<th>Comment</th>
+							  </tr>
+							</thead>
+							<tbody>
+							  {% for comorder in comorders %}
+							  <tr>
+                                <td><img src="/static/images/{{comorder[0].movies.poster}}" width="100" height="100" alt="" /></td>
+								<td>{{comorder[0].movies.movie_name}}</td>
+								<td>{{comorder[0].movies.date}}</td>
+								<td>{{comorder[0].movies.start_time}}</td>
+								<td>{{comorder[0].movies.finish_time}}</td>
+								<td>{{comorder[0].seat_number}}</td>
+								<td>{{comorder[0].movies.price}}</td>
+								<td>{{comorder[0].ticket_key}}</td>
+								{% if cur_time > comorder[0].movies.date.strftime('%Y-%m-%d') %}
+								    {% if comorder[1]==0 %}
+								    	<td><a href="/write_comment/{{comorder[0].order_id}}">Write Comment</a></td>
+								    {% else %}
+								  		<td>Have Comment</td>
+								    {% endif %}
+								{% else %}
+								    <td>Haven't played</td>
+								{% endif %}
+							  </tr>
+							{% endfor %}
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+			<!--//content-inner-section-->
+
+				<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+				<script src="js/jquery-1.11.1.min.js"></script>
+					<!-- Dropdown-Menu-JavaScript -->
+				<script src="js/dropdown.js"></script>
+						<!-- //Dropdown-Menu-JavaScript -->
+
+
+				<script type="text/javascript" src="js/jquery.zoomslider.min.js"></script>
+						<!-- search-jQuery -->
+								<script src="js/main.js"></script>
+							<script src="js/simplePlayer.js"></script>
+							<script src="js/searcy.js"></script>
+
+							<!-- pop-up-box -->
+						<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+					<!--//pop-up-box -->
+
+							<div id="small-dialog1" class="mfp-hide">
+							<iframe src=""></iframe>
+					</div>
+					<div id="small-dialog2" class="mfp-hide">
+						<iframe src=""></iframe>
+					</div>
+					<script src="js/aaa.js"></script>
+				<script src="js/easy-responsive-tabs.js"></script>
+				<script src="js/bbb.js"></script>
+				<link href="css/owl.carousel.css" rel="stylesheet" type="text/css" media="all">
+				<script src="js/owl.carousel.js"></script>
+				<script src="js/ccc.js"></script>
+
+				<!--/script-->
+				<script type="text/javascript" src="js/move-top.js"></script>
+				<script type="text/javascript" src="js/easing.js"></script>
+
+				<script src="js/ddd.js" type="text/javascript"></script>
+				 <script src="js/eee.js" type="text/javascript"></script>
+				<!--end-smooth-scrolling-->
+					<script src="js/bootstrap.js"></script>
+
+<br><br><br>
+</body>
+{%endblock%}

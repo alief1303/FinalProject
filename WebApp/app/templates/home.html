@@ -1,0 +1,442 @@
+{% extends 'base.html' %}
+<html>
+<head>
+<title>Home</title>
+
+<body>
+<!--/main-header-->
+  <!--/banner-section-->
+	{%block navigation%}
+	<div id="demo-1" data-zs-src='["/static/images/2.jpg", "/static/images/1.jpg", "/static/images/3.jpg","/static/images/4.jpg"]' data-zs-overlay="dots">
+		<div class="demo-inner-content">
+		<!--/header-w3l-->
+			   <div class="header-w3-agileits" id="home">
+			     <div class="inner-header-agile">
+				<nav class="navbar navbar-default">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<h1><a  href="/"><span>S</span>hi<span>E</span>ld</a></h1>
+					</div>
+					<!-- navbar-header -->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav">
+						<li class="active"><a href="/">HOME</a></li>
+
+						{% if current_user.is_authenticated %}
+							{% if current_user.mail == "944190546@qq.com" %}
+								<li><a href="/admin_list">Edit-list</a></li>
+								<li><a href="/poster_upload">Upload</a></li>
+							{% endif%}
+						{% endif %}
+						<li><a href="/list">List</a></li>
+						{% if current_user.is_authenticated %}
+							{% if current_user.mail == "944190546@qq.com" %}
+								<li class="dropdown">
+                    			<a href="#" class="dropdown-toggle" data-toggle="dropdown">APP<b class="caret"></b></a>
+                   			 	<ul class="dropdown-menu">
+									<li><a href="/app_upload" >APP Upload</a></li>
+									<li><a href="/download_android_app">APP-Download</a></li>
+                    			</ul>
+                    			</li>
+							{% endif%}
+						{% else %}
+							<li><a href="/download_android_app">APP-Download</a></li>
+						{% endif %}
+						{% if current_user.is_authenticated %}
+						<li>  <a class="dropdown-toggle" href="{{url_for('profile',user_id=current_user.user_id)}}">Profile</a></li>
+						<li class="dropdown">
+                    		<a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account<b class="caret"></b></a>
+                   			 <ul class="dropdown-menu">
+								<li><a href="/logout" >Logout</a></li>
+								<li><a href="/change-password" >Change Password</a></li>
+								<li><a href="{{url_for('balance',user_id=current_user.user_id)}}" >My Balance</a></li>
+                    			<li><a href="{{url_for('orders',user_id=current_user.user_id)}}" >My Order</a></li>
+                    		</ul>
+                    	</li>
+
+						{% else %}
+						<li><a href="/login" class="login" >Login</a></li>
+						<li><a href="/register" class="login reg" >Register</a></li>
+                        {% endif %}
+					</ul>
+
+					</div>
+					<div class="clearfix"> </div>
+				</nav>
+					<div class="w3ls_search">
+									<div class="cd-main-header">
+										<ul class="cd-header-buttons">
+											<li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
+										</ul> <!-- cd-header-buttons -->
+									</div>
+									<div id="cd-search" class="cd-search">
+									<form action="/search" name="search" method="post">
+										<input  type="text" name="value" placeholder="Search users or movies (if you need ensure users or movies, use -u or -m)">
+									</form>
+									</div>
+								</div>
+
+			</div>
+
+			   </div>
+		<!--//header-w3l-->
+			<!--/banner-info-->
+			   <div class="baner-info">
+			      <h3><span>La</span>test <span>On</span>Line <span>Mo</span>vies</h3>
+				  <h4>In space no one can hear your scream.</h4>
+			   </div>
+			<!--/banner-ingo-->
+		</div>
+    </div>
+	{%endblock%}
+{% block content %}
+  <!--/banner-section-->
+ <!--//main-header-->
+	         <!--/banner-bottom-->
+			<div class="w3_agilits_banner_bootm">
+			    <div class="w3_agilits_inner_bottom">
+			             <div class="col-md-6 wthree_agile_login"></div>
+						 <div class="col-md-6 wthree_share_agile">
+						 <div class="single-agile-shar-buttons"><ul><li></li></ul></div>
+						 </div>
+				</div>
+			</div><br><br><br>
+			<!--//banner-bottom-->
+			{% if current_user.is_authenticated %}
+			<h3>Welcome back,
+				{% if current_user.mail == "944190546@qq.com" %}
+					Admin
+				{% endif %}
+				{{current_user.user_name}}
+			</h3>
+      		{% endif %}
+		<!-- //Modal1 -->
+			<!--/content-inner-section-->
+			<div class="w3_content_agilleinfo_inner">
+			<div class="agile_featured_movies">
+					<!--/agileinfo_tabs-->
+			<div class="agileinfo_tabs">
+					<!--/tab-section-->
+			<div id="horizontalTab">
+			<ul class="resp-tabs-list"></ul>
+
+			{% for mov in movs %}
+			<div class="resp-tabs-container">
+				<div class="tab1">
+					<div class="tab_movies_agileinfo">
+							<div class="w3_agile_featured_movies">
+								<div class="col-md-5 video_agile_player">
+										<div class="video-grid-single-page-agileits">
+											<div data-video="f2Z65fobH2I" id="video">
+												<a href="{{url_for('detail',movie_id=mov.movie_id)}}"><img src="/static/images/{{mov.poster}}" alt="" class="img-responsive" /></a>
+											</div>
+										</div>
+
+
+<!--最近上映 推荐电影处的大屏-->
+	        <div class="player-text">
+
+					<p class="fexi_header">{{mov.movie_name}}</p>
+					<p class="fexi_header_para"><span>Story Line<label>:</label></span>{{mov.introduction}}</p>
+					<p class="fexi_header_para"><span>Release On<label>:</label></span>{{mov.premiere_date}} </p>
+					<p class="fexi_header_para">
+						<span>Genres<label>:</label> </span>
+						{{mov.movie_type}}
+					</p>
+					<p class="fexi_header_para fexi_header_para1"><span>Star Rating<label>:</label></span>
+						{% if mov.score > 0%}
+						    {% if mov.score < 2 %}
+						    <a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+							{% else %}
+						    <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+						    {% endif %}
+						{% else %}
+						<a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+						{% endif %}
+						{% if mov.score > 2%}
+							{% if mov.score < 4 %}
+						    <a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+							{% else %}
+						    <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+						    {% endif %}
+						{% else %}
+						<a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+						{% endif %}
+						{% if mov.score > 4%}
+							{% if mov.score < 6 %}
+						    <a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+							{% else %}
+						    <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+						    {% endif %}
+						{% else %}
+						<a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+						{% endif %}
+						{% if mov.score > 6%}
+							{% if mov.score < 8 %}
+						    <a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+							{% else %}
+						    <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+						    {% endif %}
+						{% else %}
+						<a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+						{% endif %}
+						{% if mov.score > 8%}
+						    {% if mov.score < 10 %}
+						    <a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+							{% else %}
+						    <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+						    {% endif %}
+						{% else %}
+						<a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+						{% endif %}
+					</p>
+				</div>
+					{% endfor %}
+
+				</div>
+				 <div class="col-md-7 wthree_agile-movies_list">
+					 {% for movie in movies %}
+					 <div class="w3l-movie-gride-agile">
+								<a href="{{url_for('detail',movie_id=movie.movie_id)}}" class="hvr-sweep-to-bottom"><img name="pic" src="/static/images/{{movie.poster}}" style="width:230px; height:300px" title="Movies Pro" class="img-responsive" alt=" ">
+									<div class="w3l-action-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
+								</a>
+									<div class="mid-1 agileits_w3layouts_mid_1_home">
+										<div class="w3l-movie-text">
+											<h6>{{movie.movie_name}}</h6>
+										</div>
+										<div class="mid-2 agile_mid_2_home">
+											<h6>{{movie.premiere_date}}</h6>
+											<div >
+
+												<ul class="w3l-ratings" float="left;">
+													{% if movie.score > 0%}
+														{% if movie.score < 2 %}
+														<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+														{% else %}
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														{% endif %}
+													{% else %}
+													<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+													{% endif %}
+													{% if movie.score > 2%}
+														{% if movie.score < 4 %}
+														<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+														{% else %}
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														{% endif %}
+													{% else %}
+													<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+													{% endif %}
+													{% if movie.score > 4%}
+														{% if movie.score < 6 %}
+														<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+														{% else %}
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														{% endif %}
+													{% else %}
+													<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+													{% endif %}
+													{% if movie.score > 6%}
+														{% if movie.score < 8 %}
+														<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+														{% else %}
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														{% endif %}
+													{% else %}
+													<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+													{% endif %}
+													{% if movie.score > 8%}
+														{% if movie.score < 10 %}
+														<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+														{% else %}
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														{% endif %}
+													{% else %}
+													<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+													{% endif %}
+												</ul>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+								<div class="ribben">
+									<p>NEW</p>
+								</div>
+						</div>
+<!--推荐电影小窗2-->   {% endfor %}
+					</div>
+					<div class="clearfix"> </div>
+					</div>
+					<div class="cleafix"></div>
+					</div>
+					</div>
+
+				<!--//tab-section-->
+				  <h3 class="agile_w3_title"> LATEST <span>MOVIES</span></h3>
+			    <!--/movies-->
+ 					<div class="wthree_agile-requested-movies">
+						{% for lastmov in lastmovs %}
+								<div class="col-md-2 w3l-movie-gride-agile requested-movies">
+									<a href="{{url_for('detail',movie_id=lastmov.movie_id)}}" class="hvr-sweep-to-bottom"><img name="pic" src="/static/images/{{lastmov.poster}}" style="width:240px; height:300px" title="Movies Pro" class="img-responsive" alt=" ">
+										<div class="w3l-action-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
+									</a>
+									<div class="mid-1 agileits_w3layouts_mid_1_home">
+										<div class="w3l-movie-text">
+											<h6>{{lastmov.movie_name}}</h6>
+										</div>
+
+										<div text-Align="center">
+											<p margin-left="auto;" margin-right="auto;">{{lastmov.premiere_date}}</p>
+											<div>
+												<ul class="w3l-ratings" float="left;">
+													{% if lastmov.score > 0%}
+														{% if lastmov.score < 2 %}
+														<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+														{% else %}
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														{% endif %}
+													{% else %}
+													<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+													{% endif %}
+													{% if lastmov.score > 2%}
+														{% if lastmov.score < 4 %}
+														<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+														{% else %}
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														{% endif %}
+													{% else %}
+													<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+													{% endif %}
+													{% if lastmov.score > 4%}
+														{% if lastmov.score < 6 %}
+														<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+														{% else %}
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														{% endif %}
+													{% else %}
+													<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+													{% endif %}
+													{% if lastmov.score > 6%}
+														{% if lastmov.score < 8 %}
+														<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+														{% else %}
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														{% endif %}
+													{% else %}
+													<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+													{% endif %}
+													{% if lastmov.score > 8%}
+														{% if lastmov.score < 10 %}
+														<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+														{% else %}
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														{% endif %}
+													{% else %}
+													<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+													{% endif %}
+												</ul>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+									<div class="ribben one">
+										<p>NEW</p>
+									</div>
+								</div>
+
+						{% endfor %}
+
+						<div class="clearfix"></div>
+						</div>
+
+				<!--//top-movies-->				<!--//movies-->
+
+
+				 <h3 class="agile_w3_title">RECOMMENDED <span>MOVIES</span> </h3>
+				<!--/requested-movies-->
+				  <div class="wthree_agile-requested-movies">
+     					{% for recomov in recomovs %}
+								<div class="col-md-2 w3l-movie-gride-agile requested-movies">
+									<a href="{{url_for('detail',movie_id=recomov.movie_id)}}" class="hvr-sweep-to-bottom"><img name="pic" src="/static/images/{{recomov.poster}}" style="width:240px; height:300px" title="Movies Pro" class="img-responsive" alt=" ">
+										<div class="w3l-action-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
+									</a>
+									<div class="mid-1 agileits_w3layouts_mid_1_home">
+										<div class="w3l-movie-text">
+											<h6>{{recomov.movie_name}}</h6>
+										</div>
+										<div text-Align="center">
+											<p margin-left="auto;" margin-right="auto;">{{recomov.premiere_date}}</p>
+											<div>
+												<ul class="w3l-ratings" float="left;">
+													{% if recomov.score > 0%}
+														{% if recomov.score < 2 %}
+														<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+														{% else %}
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														{% endif %}
+													{% else %}
+													<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+													{% endif %}
+													{% if recomov.score > 2%}
+														{% if recomov.score < 4 %}
+														<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+														{% else %}
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														{% endif %}
+													{% else %}
+													<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+													{% endif %}
+													{% if recomov.score > 4%}
+														{% if recomov.score < 6 %}
+														<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+														{% else %}
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														{% endif %}
+													{% else %}
+													<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+													{% endif %}
+													{% if recomov.score > 6%}
+														{% if recomov.score < 8 %}
+														<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+														{% else %}
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														{% endif %}
+													{% else %}
+													<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+													{% endif %}
+													{% if recomov.score > 8%}
+														{% if recomov.score < 10 %}
+														<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+														{% else %}
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														{% endif %}
+													{% else %}
+													<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+													{% endif %}
+												</ul>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+									<div class="ribben one">
+										<p>NEW</p>
+									</div>
+								</div>
+						{% endfor %}
+						<div class="clearfix"></div>
+						</div>
+
+				<!--//top-movies-->
+			</div>
+		</div>
+			<!--//content-inner-section-->
+
+</body>
+</html>
+{% endblock %}
+<script type="text/javascript">

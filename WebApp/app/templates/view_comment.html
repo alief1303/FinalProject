@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+<title>List</title>
+
+</head>
+<body>
+	<!--/content-inner-section-->
+	<div class="w3_content_agilleinfo_inner">
+			<div class="agile_featured_movies">
+			<div class="inner-agile-w3l-part-head">
+					<h3 class="w3l-inner-h-title">Comment List</h3>
+				</div>
+					   <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+
+			<div id="myTabContent" class="tab-content">
+				<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+					<div class="agile-news-table">
+
+						<table id="table-breakpoint">
+							<thead>
+							  <tr>
+								<th>Username</th>
+								<th>Comment</th>
+							  </tr>
+							</thead>
+							<tbody>
+							{% for comment in comments %}
+							  <tr>
+								<td>{{comment.users.user_name}}</td>
+								<td>{{comment.body}}</td>
+							  </tr>
+							 {% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+			<!--//content-inner-section-->
+
+				<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+
+
+<br><br><br>
+</body>
+{%endblock%}

@@ -1,0 +1,11 @@
+<resources>
+<style name="LoginTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <item name="android:windowActionBarOverlay">true</item>
+    <item name="android:windowContentOverlay">@null</item>
+    <item name="android:actionBarStyle">@style/LoginActionbarStyle</item>
+
+<item name="android:background">#00000000</item>
+<item name="android:backgroundStacked">#346c36</item>
+<item name="android:backgroundSplit">#00000000</item>
+</style>
+</resources>

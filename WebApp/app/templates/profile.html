@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body>
+<br><br><br>
+<div id="LEFT" style="position:relative;left:25%;float:left">
+{% if user.avatar %}
+  <div style="width: 220px;height: 220px; border-radius:220px;overflow: hidden;">
+<img class="img-rounded profile-thumbnail" src="../static/images/{{user.avatar}}" width="260" height="220">
+    </div>
+  <br><br>
+{% else %}
+<br><img class="img-rounded profile-thumbnail" src="../static/images/default.jpg" width="300" height="200"><br><br><br>
+{% endif %}
+<br>
+<h2>{{user.user_name}}</h2><br><br>
+  <p>Number of views:  <span class="badge">{{ user.orders.count() }}</span> &nbsp |
+    &nbsp <span class="label label-default">VIP level: {{ user.user_vip_level }}</span>
+  </p>
+</div><br>
+
+<div id="RIGHT" style="position:relative;left:45%;float:left">
+{% if user.mail or user.gender or user.age or user.phone_number %}
+<p><br>
+  {% if user.mail %}
+  Email: {{ user.mail }}
+  {% endif %}<br><br><br>
+  {% if user.gender %}
+  Gender: {{ user.gender }}
+  {% endif %}<br><br><br>
+  {% if user.age %}
+  Age: {{ user.age }}
+  {% endif %}<br><br><br>
+  {% if user.phone_number %}
+  Phone number: {{ user.phone_number }}
+  {% endif %}<br><br><br>
+  {% if user.money %} {% if user.id == current_user.id %}
+  My balance: {{ user.money }}<a href="{{url_for('balance',user_id=current_user.user_id)}}">&nbsp &nbsp Check balance and top up!</a>
+  {% endif %}{% endif %}<br><br><br>
+</p><br>
+{% endif %}
+
+<a href="{{url_for('edit',user_id=current_user.user_id)}}">
+<button class="btn btn-primary btn-sm">
+    Improve profile
+</button>
+</a> &nbsp &nbsp &nbsp
+<a href="{{url_for('orders',user_id=current_user.user_id)}}">
+<button class="btn btn-primary btn-sm">
+    View orders
+</button>
+</a><br>
+
+</div>
+<br><br><br><br><br>
+<br><br><br><br><br>
+<br><br><br><br><br>
+<br><br><br><br><br>
+
+<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+
+</body>
+{% endblock %}

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="100dp">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/start_time"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center_horizontal|bottom"
+            android:text="Start time"
+            android:textStyle="bold"
+            android:typeface="sans" />
+        <TextView
+            android:id="@+id/finish_time"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal|top"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:text="finish time"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="match_parent"
+        >
+        <TextView
+            android:id="@+id/movie_type"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal|bottom"
+            android:layout_height="45dp"
+            android:text="3D online"
+            />
+        <TextView
+            android:id="@+id/movie_hall"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal|top"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:text="XX hall"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:text="Rp.XX"
+        android:textSize="20sp" />
+    <Button
+        android:id="@+id/select_seat"
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_gravity="center"
+        android:layout_height="50dp"
+        android:background="#B4040F20"
+        android:text="Select_seat"
+        android:textAllCaps="true"
+        android:textColor="#E2EAF0F0"
+        android:textStyle="italic"
+        >
+    </Button>
+</LinearLayout>
+</LinearLayout>

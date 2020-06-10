@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+<head>
+<title>app_upload</title>
+</head>
+<body>
+    <div class="w3_breadcrumb">
+		<div class="breadcrumb-inner">
+			<ul>
+				<li><a href="index.html">Home</a><i>//</i></li>
+				<li>upload application</li>
+			</ul>
+		</div>
+	</div>
+			<!--/content-inner-section-->
+	<div class="w3_content_agilleinfo_inner">
+		<div class="agile_featured_movies">
+			<div class="inner-agile-w3l-part-head">
+				<h3 class="w3l-inner-h-title">New application</h3>
+				<p class="w3ls_head_para">Please fill in the application information</p>
+			</div>
+			<div>
+				<form class="login-form" action="/app_upload" enctype='multipart/form-data' method='POST'>
+					{{ form.hidden_tag() }}
+					<div style="margin-left:5%;width:40%;float:left">
+						Application version number:<br>
+						{{ form.app_version(cols='80',class_='form-control') }}<br>
+						{% for error in form.app_version.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}<br>
+					</div>
+					<div style="margin-right:5%;width:40%;float:right">
+						File:<br>
+						{{ form.application(cols='80',class_='form-control') }}<br>
+						{% for error in form.application.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}<br><br><br>
+					</div>
+					<input type="submit"  value="Submit" style="width:40%;margin-left: 30%;">
+				</form>
+		</div>
+		</div>
+	</div>
+</body>
+{% endblock %}

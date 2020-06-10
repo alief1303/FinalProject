@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% block content %}
+<title>Edit Movie Information</title>
+
+<body>
+	<div class="w3_breadcrumb">
+		<div class="breadcrumb-inner">
+			<ul>
+				<li><a href="index.html">Home</a><i>//</i></li>
+				<li>Edit movie information</li>
+			</ul>
+		</div>
+	</div>
+			<!--/content-inner-section-->
+		<div class="w3_content_agilleinfo_inner">
+			<div class="agile_featured_movies">
+					<div class="inner-agile-w3l-part-head">
+						<h3 class="w3l-inner-h-title">Edit movie information</h3>
+						<p class="w3ls_head_para">Please modify the movie information</p>
+					</div>
+				<div class="login-form">
+						<form action="/edit_movieInfo/{{movie.movie_id}}" enctype='multipart/form-data' method='POST'>
+							{{ form.hidden_tag() }}
+
+							<div style="margin-left:5%;width:40%;float:left">
+								Movie name:<br>
+								{{ form.movie_name(cols='80',class_='form-control') }}<br>
+								{% for error in form.movie_name.errors %}
+									<span style="color: red;">[{{ error }}]</span>
+								{% endfor %}<br>
+								Movie type:<br>
+								{{ form.movie_type(cols='80',class_='form-control') }}<br>
+								{% for error in form.movie_type.errors %}
+									<span style="color: red;">[{{ error }}]</span>
+								{% endfor %}<br>
+								Length:<br>
+								{{ form.movie_length(cols='80',class_='form-control') }}<br>
+								{% for error in form.movie_length.errors %}
+									<span style="color: red;">[{{ error }}]</span>
+								{% endfor %}<br>
+								Country:<br>
+								{{ form.country(cols='80',class_='form-control') }}<br>
+								{% for error in form.country.errors %}
+									<span style="color: red;">[{{ error }}]</span>
+								{% endfor %}<br>
+								Premiere date:<br>
+								{{ form.premiere_date(cols='80',class_='form-control') }}<br>
+								{% for error in form.premiere_date.errors %}
+									<span style="color: red;">[{{ error }}]</span>
+								{% endfor %}<br>
+								Special effect:<br>
+								{{ form.special_effect(cols='80',class_='form-control') }}<br>
+								{% for error in form.special_effect.errors %}
+									<span style="color: red;">[{{ error }}]</span>
+								{% endfor %}<br>
+								Director:<br>
+								{{ form.director(cols='80',class_='form-control') }}<br>
+								{% for error in form.director.errors %}
+									<span style="color: red;">[{{ error }}]</span>
+								{% endfor %}<br>
+
+							</div>
+							<div style="margin-right:5%;width:40%;float:right">
+								Actors:<br>
+								{{ form.actors(cols='80',class_='form-control') }}<br>
+								{% for error in form.actors.errors %}
+									<span style="color: red;">[{{ error }}]</span>
+								{% endfor %}<br>
+								Score:<br>
+								{{ form.score(cols='80',class_='form-control') }}<br>
+								{% for error in form.score.errors %}
+									<span style="color: red;">[{{ error }}]</span>
+								{% endfor %}<br>
+								Poster:<br>
+								{{ form.poster(cols='80',class_='form-control') }}<br>
+								{% for error in form.poster.errors %}
+									<span style="color: red;">[{{ error }}]</span>
+								{% endfor %}<br><br>
+								Introduction:<br>
+								{{ form.introduction(cols='80',rows='10',class_='form-control') }}<br>
+								{% for error in form.introduction.errors %}
+									<span style="color: red;">[{{ error }}]</span>
+								{% endfor %}<br><br><br>
+
+								<input type="submit"  value="Submit">
+							</div>
+
+							<div class="clearfix"> </div>
+						</form>
+
+			</div>
+			</div>
+		</div>
+			<!--//content-inner-section-->
+<script src="../static/js/jquery-1.11.1.min.js"></script>
+	<!-- Dropdown-Menu-JavaScript -->
+			<script>
+				$(document).ready(function(){
+					$(".dropdown").hover(
+						function() {
+							$('.dropdown-menu', this).stop( true, true ).slideDown("fast");
+							$(this).toggleClass('open');
+						},
+						function() {
+							$('.dropdown-menu', this).stop( true, true ).slideUp("fast");
+							$(this).toggleClass('open');
+						}
+					);
+				});
+			</script>
+		<!-- //Dropdown-Menu-JavaScript -->
+		<!-- search-jQuery -->
+				<script src="../static/js/main.js"></script>
+			<!-- //search-jQuery -->
+
+
+<!--/script-->
+<script type="text/javascript" src="../static/js/move-top.js"></script>
+<script type="text/javascript" src="../static/js/easing.js"></script>
+
+<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},900);
+				});
+			});
+</script>
+ <script type="text/javascript">
+						$(document).ready(function() {
+							/*
+							var defaults = {
+					  			containerID: 'toTop', // fading element id
+								containerHoverID: 'toTopHover', // fading element hover id
+								scrollSpeed: 1200,
+								easingType: 'linear'
+					 		};
+							*/
+
+							$().UItoTop({ easingType: 'easeOutQuart' });
+
+						});
+					</script>
+<!--end-smooth-scrolling-->
+	<script src="../static/js/bootstrap.js"></script>
+
+</body>
+{%endblock%}

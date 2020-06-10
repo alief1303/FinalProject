@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+<head>
+<title>balance</title>
+</head>
+<body>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="page-header"><br>
+            <h1>Top up!</h1><br><br>
+            <p>Accumulated top up: 100-VIP1(10% discount), 200-VIP2(20% discount), 500-VIP3(30% discount)</p>
+            <p>You have {{money}} in your account now</p><br>
+            <p>VIP level: {{vip}}</p><br>
+            {% if vip >= 3 %}
+                <p>(You have achieved the highest level VIP)</p>
+            {% endif %}
+            {% if vip == 0 %}
+                <progress value="{{acc}}" max="100" style="width: 100%" class="progress"></progress>
+                <p>To achieve VIP 1, You need top-up {{100 - acc}}</p>
+            {% endif %}
+            {% if vip == 1 %}
+                <progress value="{{acc}}" max="200" style="width: 100%" class="progress"></progress>
+                <p>To achieve VIP 2, You need top-up {{200 - acc}}</p>
+            {% endif %}
+            {% if vip == 2 %}
+                <progress value="{{acc}}" max="500" style="width: 100%" class="progress"></progress>
+                <p>To achieve VIP 3, You need top-up {{500 - acc}}</p>
+            {% endif %}
+<br>
+        </div>
+        {{ wtf.quick_form(form) }}
+        </div>
+    <div class="col-md-4"></div>
+</body>
+<br><br><br><br><br>
+<br><br><br><br><br>
+<br><br><br><br><br>
+<br><br><br><br><br>
+<br><br><br><br><br>
+{% endblock %}

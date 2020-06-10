@@ -1,0 +1,221 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<html>
+<head lang="en">
+    <!-- Introduce bootstrap framework and CSS files-->
+    {% if title %}
+    <title>SHIELD - {{ title }}</title>
+    {% else %}
+    <title>SHIELD</title>
+    {% endif %}
+	<link href="/static/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
+	<link rel="stylesheet" type="text/css" href="/static/css/zoomslider.css" />
+	<link rel="stylesheet" type="text/css" href="/static/css/table-style.css" />
+	<link rel="stylesheet" type="text/css" href="/static/css/basictable.css" />
+
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+            function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- pop-up -->
+    <link href="/static/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- //pop-up -->
+    <link href="/static/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" type="text/css" href="/static/css/zoomslider.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+    <link href="/static/css/font-awesome.css" rel="stylesheet">
+    <script type="text/javascript" src="/static/js/modernizr-2.6.2.min.js"></script>
+    <!--/web-fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Tangerine:400,700' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<!--//web-fonts-->
+
+</head>
+<body>
+
+<!--/main-header-->
+  <!--/banner-section-->
+{% block navigation %}
+	<div id="demo-1" class="banner-inner">
+	 <div class="banner-inner-dott">
+		<!--/header-w3l-->
+			   <div class="header-w3-agileits" id="home">
+			     <div class="inner-header-agile part2">
+				<nav class="navbar navbar-default">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+
+					<h1><a  href="/"><span>S</span>hi<span>E</span>ld</a></h1>
+				</div>
+				<!-- navbar-header -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+					<li class="active"><a href="/">HOME</a></li>
+
+						{% if current_user.is_authenticated %}
+							{% if current_user.mail == "944190546@qq.com" %}
+								<li><a href="/admin_list">Edit-list</a></li>
+								<li><a href="/poster_upload">Upload</a></li>
+							{% endif%}
+						{% endif %}
+						<li><a href="/list">List</a></li>
+						{% if current_user.is_authenticated %}
+							{% if current_user.mail == "944190546@qq.com" %}
+								<li class="dropdown">
+                    			<a href="#" class="dropdown-toggle" data-toggle="dropdown">APP<b class="caret"></b></a>
+                   			 	<ul class="dropdown-menu">
+									<li><a href="/app_upload" >APP Upload</a></li>
+									<li><a href="/download_android_app">APP-Download</a></li>
+                    			</ul>
+                    			</li>
+							{% endif%}
+						{% else %}
+							<li><a href="/download_android_app">APP-Download</a></li>
+						{% endif %}
+						{% if current_user.is_authenticated %}
+						<li>  <a class="dropdown-toggle" href="{{url_for('profile',user_id=current_user.user_id)}}">Profile</a></li>
+						<li class="dropdown">
+                    		<a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account<b class="caret"></b></a>
+                   			 <ul class="dropdown-menu">
+								<li><a href="/logout" >Logout</a></li>
+								<li><a href="/change-password" >Change Password</a></li>
+								<li><a href="{{url_for('balance',user_id=current_user.user_id)}}" >My Balance</a></li>
+                    			<li><a href="{{url_for('orders',user_id=current_user.user_id)}}" >My Order</a></li>
+                    		</ul>
+                    	</li>
+
+						{% else %}
+						<li><a href="/login" class="login" >Login</a></li>
+						<li><a href="/register" class="login reg" >Register</a></li>
+                        {% endif %}
+					</ul>
+
+					</div>
+					<div class="clearfix"> </div>
+				</nav>
+					<div class="w3ls_search">
+						<div class="cd-main-header">
+							<ul class="cd-header-buttons">
+								<li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
+							</ul> <!-- cd-header-buttons -->
+						</div>
+						<div id="cd-search" class="cd-search">
+							<form action="/search" name="search" method="post">
+								<input  type="text" name="value" placeholder="Search users or movies (if you need ensure users or movies, use -u or -m)">
+							</form>
+						</div>
+					</div>
+			</div>
+
+			   </div>
+		<!--//header-w3l-->
+		</div>
+    </div>
+{% endblock %}
+  <!--/banner-section-->
+ <!--//main-header-->
+
+		     <!-- Modal1 -->
+			<!-- //Modal1 -->
+						<!-- breadcrumb -->
+    {% if title %}
+	<div class="w3_breadcrumb">
+	<div class="breadcrumb-inner">
+			<ul>
+				<li><a>Home Page</a><i>//</i></li>
+				<li>{{ title }}</li>
+			</ul>
+		</div>
+	</div>
+    {% else %}
+    <br>
+    {% endif %}
+
+{% block content %}
+{% endblock %}
+
+<!--/footer-bottom-->
+	<div class="contact-w3ls" id="contact">
+		<div class="footer-w3lagile-inner">
+
+				<div class="footer-grids w3-agileits">
+
+
+
+						<div class="col-md-2 footer-grid">
+							<div class="clearfix"> </div>
+						</div>
+
+
+					</div>
+					<div class="col-md-2 footer-grid">
+
+
+						<div class="clearfix"> </div>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<h3 class="text-center follow">CONTACT <span>US</span></h3>
+					<ul class="social-icons1 agileinfo">
+						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+						<li><a href="#"><i class="fa fa-youtube"></i></a></li>
+						<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+					</ul>
+
+		 </div>
+
+		</div>
+		<div class="w3agile_footer_copy">
+					<p>SHIELD</p>
+		</div>
+		<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+	<script src="/static/js/jquery-1.11.1.min.js"></script>
+			<!-- Dropdown-Menu-JavaScript -->
+		<script src="/static/js/dropdown.js"></script>
+				<!-- //Dropdown-Menu-JavaScript -->
+
+
+		<script type="text/javascript" src="/static/js/jquery.zoomslider.min.js"></script>
+				<!-- search-jQuery -->
+						<script src="/static/js/main.js"></script>
+					<script src="/static/js/simplePlayer.js"></script>
+					<script src="/static/js/searcy.js"></script>
+
+					<!-- pop-up-box -->
+				<script src="/static/js/jquery.magnific-popup.js" type="text/javascript"></script>
+			<!--//pop-up-box -->
+
+					<div id="small-dialog1" class="mfp-hide">
+					<iframe src=""></iframe>
+			</div>
+			<div id="small-dialog2" class="mfp-hide">
+				<iframe src=""></iframe>
+			</div>
+			<script src="/static/js/aaa.js"></script>
+		<script src="/static/js/easy-responsive-tabs.js"></script>
+		<script src="/static/js/bbb.js"></script>
+		<link href="/static/css/owl.carousel.css" rel="stylesheet" type="text/css" media="all">
+		<script src="/static/js/owl.carousel.js"></script>
+		<script src="/static/js/ccc.js"></script>
+
+		<!--/script-->
+		<script type="text/javascript" src="/static/js/move-top.js"></script>
+		<script type="text/javascript" src="/static/js/easing.js"></script>
+
+		<script src="/static/js/ddd.js" type="text/javascript"></script>
+		 <script src="/static/js/eee.js" type="text/javascript"></script>
+		<!--end-smooth-scrolling-->
+			<script src="/static/js/bootstrap.js"></script>
+</body>
+</html>
